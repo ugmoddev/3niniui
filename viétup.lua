@@ -3152,8 +3152,8 @@ Farm:AddSection({"Auto Farm main"})
 Farm:AddDropdown({
     Name = "Chọn Vũ Khí",
     Description = "",
-    Options = {"Võ","Kiếm","Trái","Súng"},
-    Default = "Võ",
+    Options = {"Melee","Sword","Fruit","Gun"},
+    Default = "Melee",
     Multi = false,
     Callback = function(I)
         _G.ChooseWP = I
@@ -3174,7 +3174,7 @@ spawn(function()
     end
 end)
 -- VARIAVEIS GLOBAIS
-_G.SelectedFarmMode = "Cấp"
+_G.SelectedFarmMode = "Level"
 _G.StartFarm = false
 _G.Level = false
 _G.AutoFarm_Bone = false
@@ -3207,7 +3207,7 @@ end
 
 Farm:AddDropdown({
     Name = "Chọn Chế Độ Farm",
-    Options = {"Cấp", "Xương", "Cake Prince", "Tyrant Of The Skies"},
+    Options = {"Level", "Bone", "Cake Prince", "Tyrant Of The Skies"},
     Default = GetSetting("SelectedFarmMode_Save", "Level"),
     Callback = function(v)
         _G.SelectedFarmMode = v
@@ -3229,9 +3229,9 @@ Farm:AddToggle({
         _G.AutoTyrant = false 
 
         if v then  
-            if _G.SelectedFarmMode == "Cấp" then  
+            if _G.SelectedFarmMode == "Level" then  
                 _G.Level = true  
-            elseif _G.SelectedFarmMode == "Xương" then  
+            elseif _G.SelectedFarmMode == "Bone" then  
                 _G.AutoFarm_Bone = true  
             elseif _G.SelectedFarmMode == "Cake Prince" then  
                 _G.AutoFarm_Cake = true  
@@ -5810,7 +5810,7 @@ local z5 = {
             "Lv 1", "Lv 2", "Lv 3", "Lv 4", "Lv 5", "Lv 6", "Lv Infinite",
         };
         Event:AddDropdown({
-            Name = "Chọn Cấp Đọ Biển",
+            Name = "Chọn Cấp Độ Biển",
             Description = "Select danger level to travel",
             Options = H5,
             Default = "Lv Infinite",
@@ -6477,7 +6477,7 @@ task.spawn(function()
     end
 end)
 Event:AddToggle({
-	Name = "Đổi Dóc Nhìn",
+	Name = "Đổi Chế Độ Nhìn",
     Description = "Deixa os obstáculos da Mirage transparentes",
     -- 1. Carrega se estava ativo
     Default = GetSetting("MirageTransparency_Save", false),
@@ -7200,12 +7200,12 @@ Event:AddToggle({
 end
 Maestry:AddSection({"Mastery"})
 
-local islands = { "Cake", "Xương" }
+local islands = { "Cake", "Bone" }
 Maestry:AddDropdown({
     Title = "Chọn Chế Độ Farm Mastery",
     Description = "",
     Options= islands,
-    Default = "Xương",
+    Default = "Bone",
     Callback = function(I)
         SelectIsland = I
     end
@@ -7636,7 +7636,7 @@ if World1 then
 Race:AddSection({"Lên Sea 2 & 3 Để nâng Tộc"});
 end
 if World3 then
-Race:AddSection({"Trials Quests / Misc V4"});
+Race:AddSection({"Nhiệm vụ Trials / Khác V4"});
 local K5 = Race:AddParagraph({ Title = " Tiers V4 Status ", Content = "" });
 spawn(function()
 	pcall(function()
@@ -7646,7 +7646,7 @@ spawn(function()
 	end);
 end);
 Race:AddToggle({
-	Name = "Auto Look At Moon",
+	Name = "Tự Động Nhìn Mặt Trăng",
 	Description = "",
 	Default = false,
 	Callback = function(I)
@@ -7668,7 +7668,7 @@ task.spawn(function()
 	end;
 end);
 Race:AddToggle({
-	Name = "Auto Pull Lever",
+	Name = "Tự Động Gạt Cần",
 	Description = "",
 	Default = false,
 	Callback = function(I)
@@ -7689,7 +7689,7 @@ spawn(function()
 	end;
 end);
 Race:AddToggle({
-	Name = "Auto Train V4",
+	Name = "Tự Động Train V4",
 	Description = "turn on for farm tier + auto upgrade your tier level",
 	Default = false,
 	Callback = function(I)
@@ -7727,17 +7727,17 @@ spawn(function()
 		end);
 	end;
 end);
-Race:AddButton({ Name = "Teleport to Temple of Time", Description = "", Callback = function()
+Race:AddButton({ Name = "Dịch Chuyển Đến Temple of Time", Description = "", Callback = function()
 		replicated.Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(28286.35546875, 14895.301757812, 102.62469482422));
 	end });
-Race:AddButton({ Name = "Teleport to Ancient One", Description = "", Callback = function()
+Race:AddButton({ Name = "Dịch Chuyển Đến Ancient One", Description = "", Callback = function()
 		notween(CFrame.new(28981.552734375, 14888.426757812, -120.24584960938));
 	end });
-Race:AddButton({ Name = "Teleport to Ancient Clock", Description = "", Callback = function()
+Race:AddButton({ Name = "Dịch Chuyển Đến Ancient Clock", Description = "", Callback = function()
 		notween(CFrame.new(29549, 15069, -88));
 	end });
 Race:AddToggle({
-	Name = "Auto Teleport to Race Doors",
+	Name = "Tự Động Dịch Chuyển Đến Cửa Tộc",
 	Description = "",
 	Default = false,
 	Callback = function(I)
@@ -7766,7 +7766,7 @@ spawn(function()
 	end;
 end);
 Race:AddToggle({
-	Name = "Auto Complete Trial Race",
+	Name = "Tự Động Hoàn Thành Trial Tộc",
 	Description = "",
 	Default = false,
 	Callback = function(I)
@@ -7874,7 +7874,7 @@ spawn(function()
 	end;
 end);
 Race:AddToggle({
-	Name = "Auto Kill Player After Trial",
+	Name = "Tự Động Giết Người Chơi Sau Khi Trial",
 	Description = "turn on for kill player after the race trials",
 	Default = false,
 	Callback = function(I)
@@ -7903,7 +7903,7 @@ spawn(function()
 end);
 end
 if World3 then
-Dojo:AddSection({"Dojo Quest & Drago Race"});
+Dojo:AddSection({"Nhiệm Vụ Dojo & Tộc Rồng"});
 Dojo:AddToggle({
 	Name = "Auto Dojo Trainer",
 	Description = "turn on for do dojo belt quest white to black",
@@ -8009,7 +8009,7 @@ spawn(function()
 	end;
 end);
 Dojo:AddToggle({
-	Name = "Auto Dragon Hunter",
+	Name = "Tự Động Hoàn Thành Nhiệm Vụ Của Dragon Hunter",
 	Description = "turn on for farm blaze ember + auto collect blaze ember",
 	Default = false,
 	Callback = function(I)
@@ -8135,13 +8135,13 @@ spawn(function()
 		end;
 	end;
 end);
-Dojo:AddSection({"Draco Trial"});
+Dojo:AddSection({"Trial Tộc Rồng"});
 GetQuestDracoLevel = function()
 		local I = { [1] = { NPC = "Dragon Wizard", Command = "Upgrade" } };
 		return (replicated.Modules.Net:FindFirstChild("RF/InteractDragonQuest")):InvokeServer(unpack(I));
 	end;
 Dojo:AddToggle({
-	Name = "Tween To Upgrade Draco Trial",
+	Name = "Bay Đến Nơi Nâng Tộc Rồng",
 	Description = "",
 	Default = false,
 	Callback = function(I)
@@ -8168,7 +8168,7 @@ spawn(function()
 	end;
 end);
 Dojo:AddToggle({
-	Name = "Auto race draco (V1)",
+	Name = "Tự Động Lấy Tộc Rồng (V1)",
 	Description = "turn on for auto quest1 auto prehistoric event + collect dragon eggs",
 	Default = false,
 	Callback = function(I)
