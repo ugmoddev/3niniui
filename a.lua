@@ -2405,8 +2405,22 @@ QuestNeta = function()
 })
 
 -- Tab 
-local Tab1 = Window:AddTab("Status And Server", "") 
-local Section7 = Tab1:AddLeftGroupbox("Time Zone")
+local Tab1 = Window:AddTab("Server", "") 
+local Section7 = Tab1:AddLeftGroupbox("Server")
+Section7:AddTextBox({
+    Name = "Input Job Id",
+    Placeholder = "Job ID",
+    ClearOnFocus = true,
+    Callback = function(Value)
+        getgenv().Job = Value
+    end
+})
+Section7:AddButton({
+    Name = "Join Server",
+    Callback = function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,getgenv().Job,game.Players.LocalPlayer)
+    end
+})
 local Tab2 = Window:AddTab("Shop", "") 
 local Section1 = Tab2:AddLeftGroupbox("Melee")
 local Section2 = Tab2:AddLeftGroupbox("Swords")
